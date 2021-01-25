@@ -1936,8 +1936,7 @@ Session::location_added (Location *location)
 		location->EndChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 		location->Changed.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 		location->FlagsChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
-#warning NUTEMPO can locations have their lock style changed and how
-		// location->PositionLockStyleChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
+		location->TimeDomainChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 	}
 
 	if (location->is_range_marker()) {
@@ -1947,8 +1946,7 @@ Session::location_added (Location *location)
 		location->EndChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 		location->Changed.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 		location->FlagsChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
-#warning NUTEMPO can locations have their lock style changed and how
-		// location->PositionLockStyleChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
+		location->TimeDomainChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 	}
 
 	if (location->is_skip()) {
@@ -1958,8 +1956,7 @@ Session::location_added (Location *location)
 		location->EndChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_skips, this, location, true));
 		location->Changed.connect_same_thread (skip_update_connections, boost::bind (&Session::update_skips, this, location, true));
 		location->FlagsChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_skips, this, location, false));
-#warning NUTEMPO can locations have their lock style changed and how
-		// location->PositionLockStyleChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
+		location->TimeDomainChanged.connect_same_thread (skip_update_connections, boost::bind (&Session::update_marks, this, location));
 
 		update_skips (location, true);
 	}
